@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Visão Geral | Sistema Editorial</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/layout.css">
+    <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="css/utilities.css">
+</head>
+<body>
+    <div class="app-layout">
+        <aside class="sidebar">
+            <h2 class="logo font-editorial">Sistema</h2>
+            <nav class="nav-menu">
+                <a href="index.html" class="active">Visão Geral</a>
+                <a href="produtos.html">Produtos</a>
+                <a href="clientes.html">Clientes</a>
+                <a href="pedidos.html">Pedidos</a>
+            </nav>
+        </aside>
+        <main class="content">
+            <header class="page-header">
+                <h1>Visão Geral</h1>
+                <p class="page-description">Métricas e acompanhamento geral da operação.</p>
+            </header>
+            
+            <section class="section">
+                <div class="grid-container">
+                    <div class="stat-card">
+                        <div class="stat-card-title">Produtos Cadastrados</div>
+                        <div class="stat-card-value" id="stat-produtos">--</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-card-title">Clientes Ativos</div>
+                        <div class="stat-card-value" id="stat-clientes">--</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-card-title">Total de Pedidos</div>
+                        <div class="stat-card-value" id="stat-pedidos">--</div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+    
+    <script src="js/api.js"></script>
+    <script src="js/app.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', async () => {
+            // Implementação futura real via api.js
+            document.getElementById('stat-produtos').innerText = '0';
+            document.getElementById('stat-clientes').innerText = '0';
+            document.getElementById('stat-pedidos').innerText = '0';
+        });
+    </script>
+</body>
+</html>

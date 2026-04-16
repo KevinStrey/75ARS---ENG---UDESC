@@ -1,0 +1,39 @@
+/* css/style.css - Variaveis e Reset base */
+:root {
+  --bg-color: #fdfcfb;
+  --text-color: #1a1a1a;
+  --border-color: rgba(0, 0, 0, 0.12);
+  --accent-color: #1a1a1a;
+  
+  --font-editorial: 'Playfair Display', Didot, Georgia, serif;
+  --font-data: 'Inter', -apple-system, sans-serif;
+  
+  --spacing-xs: 0.5rem;
+  --spacing-sm: 1rem;
+  --spacing-md: 2.5rem;
+  --spacing-lg: 5rem;
+  --spacing-xl: 8rem;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  font-family: var(--font-data);
+  line-height: 1.6;
+  margin: 0;
+  padding: 0;
+}
+
+h1, h2, h3, h4, .font-editorial {
+  font-family: var(--font-editorial);
+  font-weight: normal;
+  letter-spacing: -0.01em;
+  margin-top: 0;
+  margin-bottom: var(--spacing-sm);
+}
+
+p {
+  color: #444;
+}

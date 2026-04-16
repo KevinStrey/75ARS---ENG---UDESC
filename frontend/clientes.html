@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clientes | Sistema Editorial</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/layout.css">
+    <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="css/utilities.css">
+</head>
+<body>
+    <div class="app-layout">
+        <aside class="sidebar">
+            <h2 class="logo font-editorial">Sistema</h2>
+            <nav class="nav-menu">
+                <a href="index.html">Visão Geral</a>
+                <a href="produtos.html">Produtos</a>
+                <a href="clientes.html" class="active">Clientes</a>
+                <a href="pedidos.html">Pedidos</a>
+            </nav>
+        </aside>
+        <main class="content">
+            <header class="page-header d-flex justify-between align-center">
+                <div>
+                    <h1>Clientes</h1>
+                    <p class="page-description">Base de contatos e entidades clientes.</p>
+                </div>
+                <button class="primary font-data" onclick="app.toggleActionPanel('panel-novo-cliente')">Novo Cliente</button>
+            </header>
+
+            <section class="section action-panel" id="panel-novo-cliente" style="display: none; margin-bottom: var(--spacing-lg); border: 1px solid var(--border-color); padding: var(--spacing-md);">
+                <h3 class="mb-md">Cadastrar Cliente</h3>
+                <form id="form-cliente" class="d-flex flex-column gap-sm">
+                    <div class="input-field">
+                        <label for="nome-cliente">Nome do Cliente</label>
+                        <input type="text" id="nome-cliente" required />
+                    </div>
+                    <div class="input-field">
+                        <label for="email-cliente">E-mail</label>
+                        <input type="email" id="email-cliente" required />
+                    </div>
+                    <div class="action-bar mt-0">
+                        <button type="button" onclick="app.toggleActionPanel('panel-novo-cliente')">Cancelar</button>
+                        <button type="submit" class="primary">Salvar Cliente</button>
+                    </div>
+                </form>
+            </section>
+            
+            <section class="section">
+                <table class="table-editorial" id="tabela-clientes">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Nome</th>
+                            <th>E-mail</th>
+                            <th class="text-right">Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td colspan="4" class="text-center">Carregando contatos...</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+        </main>
+    </div>
+    
+    <script src="js/api.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/clientes.js"></script>
+</body>
+</html>

@@ -1,0 +1,20 @@
+server:
+  port: 8082
+
+spring:
+  application:
+    name: servico-pedidos
+  datasource:
+    url: jdbc:postgresql://localhost:5432/microsservicos_db?currentSchema=pedidos_schema
+    username: admin
+    password: admin_password
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+        default_schema: pedidos_schema
+        hbm2ddl.create_namespaces: true
