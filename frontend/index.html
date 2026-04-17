@@ -52,10 +52,20 @@
     <script src="js/app.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', async () => {
-            // Implementação futura real via api.js
-            document.getElementById('stat-produtos').innerText = '0';
-            document.getElementById('stat-clientes').innerText = '0';
-            document.getElementById('stat-pedidos').innerText = '0';
+            try {
+                const produtos = await window.api.get('produtos', '/produtos') || [];
+                document.getElementById('stat-produtos').innerText = produtos.length;
+            } catch(e) { document.getElementById('stat-produtos').innerText = 'Erro'; }
+
+            try {
+                const clientes = await window.api.get('clientes', '/clientes') || [];
+                document.getElementById('stat-clientes').innerText = clientes.length;
+            } catch(e) { document.getElementById('stat-clientes').innerText = 'Erro'; }
+
+            try {
+                const pedidos = await window.api.get('pedidos', '/pedidos') || [];
+                document.getElementById('stat-pedidos').innerText = pedidos.length;
+            } catch(e) { document.getElementById('stat-pedidos').innerText = 'Erro'; }
         });
     </script>
 </body>

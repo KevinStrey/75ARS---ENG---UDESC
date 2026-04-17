@@ -1,0 +1,6 @@
+com\arquitetura\pedidos\ServicoPedidosApplication.class
+com\arquitetura\pedidos\model\Pedido$PedidoBuilder.class
+com\arquitetura\pedidos\controller\PedidoController.class
+com\arquitetura\pedidos\repository\PedidoRepository.class
+com\arquitetura\pedidos\service\PedidoService.class
+com\arquitetura\pedidos\model\Pedido.class

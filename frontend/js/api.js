@@ -1,8 +1,8 @@
 // js/api.js - Gateway functions for the REST Microservices
 const API_CONFIG = {
     // Definiremos as portas temporárias, que poderão ser ajustadas depois que tivermos os backends
-    produtos: 'http://localhost:8081/api',
-    pedidos: 'http://localhost:8082/api',
+    produtos: 'http://localhost:8081',
+    pedidos: 'http://localhost:8082',
     clientes: 'http://localhost:8083/api'
 };
 

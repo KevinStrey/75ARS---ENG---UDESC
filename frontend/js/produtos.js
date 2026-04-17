@@ -10,9 +10,9 @@ document.addEventListener('DOMContentLoaded', () => {
             const preco = parseFloat(document.getElementById('preco-produto').value);
             
             try {
-                // Integração real será: await window.api.post('produtos', '/produtos', { nome, preco });
-                console.log('API call Simulada - Produto salvo:', { nome, preco });
-                alert('Mock: Produto salvo com sucesso!');
+                await window.api.post('produtos', '/produtos', { nome, preco, quantidadeEstoque: 0, descricao: '' });
+                console.log('API call - Produto salvo:', { nome, preco });
+                alert('Produto salvo com sucesso!');
                 app.toggleActionPanel('panel-novo-produto');
                 form.reset();
                 carregarProdutos(); // Recarregar tabela
@@ -28,13 +28,7 @@ async function carregarProdutos() {
     if(!tbody) return;
     
     try {
-        // Integração real será: const produtos = await window.api.get('produtos', '/produtos');
-        // Mock temporiário para validar layout:
-        const produtos = [
-            { id: 1, nome: 'Revista Edição de Colecionador', preco: 120.50 },
-            { id: 2, nome: 'Pôster Tipográfico A3', preco: 45.00 },
-            { id: 3, nome: 'Assinatura Digital Anual', preco: 89.90 }
-        ];
+        const produtos = await window.api.get('produtos', '/produtos');
         
         tbody.innerHTML = '';
         if(produtos.length === 0) {

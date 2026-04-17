@@ -9,6 +9,9 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+import org.springframework.web.bind.annotation.CrossOrigin;
+
+@CrossOrigin("*")
 @RestController
 @RequestMapping("/produtos")
 @RequiredArgsConstructor

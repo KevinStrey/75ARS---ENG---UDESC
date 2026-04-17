@@ -1,0 +1,6 @@
+com\arquitetura\produtos\controller\ProdutoController.class
+com\arquitetura\produtos\model\Produto.class
+com\arquitetura\produtos\ServicoProdutosApplication.class
+com\arquitetura\produtos\model\Produto$ProdutoBuilder.class
+com\arquitetura\produtos\repository\ProdutoRepository.class
+com\arquitetura\produtos\service\ProdutoService.class

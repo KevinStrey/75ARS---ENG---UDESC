@@ -10,9 +10,9 @@ document.addEventListener('DOMContentLoaded', () => {
             const email = document.getElementById('email-cliente').value;
             
             try {
-                // Integração real: await window.api.post('clientes', '/clientes', { nome, email });
-                console.log('API call Simulada - Cliente salvo:', { nome, email });
-                alert('Mock: Cliente salvo com sucesso!');
+                await window.api.post('clientes', '/clientes', { nome, email });
+                console.log('API call - Cliente salvo:', { nome, email });
+                alert('Cliente salvo com sucesso!');
                 app.toggleActionPanel('panel-novo-cliente');
                 form.reset();
                 carregarClientes();
@@ -28,11 +28,7 @@ async function carregarClientes() {
     if(!tbody) return;
     
     try {
-        // Integração real: const clientes = await window.api.get('clientes', '/clientes');
-        const clientes = [
-            { id: 101, nome: 'João da Silva', email: 'joao.silva@exemplo.com.br' },
-            { id: 102, nome: 'Maria Editora Ltda.', email: 'contato@mariaeditora.com.br' }
-        ];
+        const clientes = await window.api.get('clientes', '/clientes');
         
         tbody.innerHTML = '';
         if(clientes.length === 0) {

@@ -1,29 +1,56 @@
 // js/pedidos.js
 document.addEventListener('DOMContentLoaded', () => {
     carregarPedidos();
+    carregarFormulariosPedido();
     
     const form = document.getElementById('form-pedido');
     if(form) {
         form.addEventListener('submit', async (e) => {
             e.preventDefault();
-            // Processamento do pedido de forma simulada
-            alert('Mock: Pedido processado!');
-            app.toggleActionPanel('panel-novo-pedido');
-            form.reset();
+            const clienteNode = document.getElementById('cliente-pedido');
+            const produtoNode = document.getElementById('produto-pedido');
+            
+            const cliente = clienteNode.options[clienteNode.selectedIndex].text;
+            const idProduto = parseInt(produtoNode.value);
+            const quantidade = parseInt(document.getElementById('quantidade-pedido').value);
+            const preco = parseFloat(produtoNode.options[produtoNode.selectedIndex].dataset.preco || 0);
+            const valorTotal = preco * quantidade;
+
+            try {
+                await window.api.post('pedidos', '/pedidos', { cliente, idProduto, quantidade, valorTotal, status: 'CRIADO' });
+                alert('Pedido criado com sucesso!');
+                app.toggleActionPanel('panel-novo-pedido');
+                form.reset();
+                carregarPedidos();
+            } catch(e) {
+                alert(`Erro ao criar pedido: ${e.message}`);
+            }
         });
     }
 });
+
+async function carregarFormulariosPedido() {
+    try {
+        const clientes = await window.api.get('clientes', '/clientes') || [];
+        const selCliente = document.getElementById('cliente-pedido');
+        selCliente.innerHTML = '<option value="">Selecione um cliente</option>' + 
+            clientes.map(c => `<option value="${c.id}">${c.nome}</option>`).join('');
+            
+        const produtos = await window.api.get('produtos', '/produtos') || [];
+        const selProduto = document.getElementById('produto-pedido');
+        selProduto.innerHTML = '<option value="">Selecione um produto</option>' + 
+            produtos.map(p => `<option value="${p.id}" data-preco="${p.preco}">${p.nome} (R$ ${p.preco})</option>`).join('');
+    } catch(e) {
+        console.error("Erro ao carregar selects:", e);
+    }
+}
 
 async function carregarPedidos() {
     const tbody = document.querySelector('#tabela-pedidos tbody');
     if(!tbody) return;
     
     try {
-        // Integração real: const pedidos = await window.api.get('pedidos', '/pedidos');
-        const pedidos = [
-            { id: 99401, clienteNome: 'João da Silva', total: 120.50, data: '2026-04-15T14:30:00Z' },
-            { id: 99402, clienteNome: 'Maria Editora Ltda.', total: 980.00, data: '2026-04-16T10:15:00Z' }
-        ];
+        const pedidos = await window.api.get('pedidos', '/pedidos');
         
         tbody.innerHTML = '';
         if(pedidos.length === 0) {
@@ -35,9 +62,9 @@ async function carregarPedidos() {
              const tr = document.createElement('tr');
              tr.innerHTML = `
                 <td>#${p.id}</td>
-                <td>${p.clienteNome}</td>
-                <td>${app.formatCurrency(p.total)}</td>
-                <td>${app.formatDate(p.data)}</td>
+                <td>${p.cliente}</td>
+                <td>${app.formatCurrency(p.valorTotal)}</td>
+                <td>${app.formatDate(p.dataPedido)}</td>
              `;
              tbody.appendChild(tr);
         });
