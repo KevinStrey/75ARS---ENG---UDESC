@@ -1,0 +1,44 @@
+@startuml DER baseado no init.sql
+
+entity "cliente" as cliente {
+  *id : serial
+  --
+  nome : varchar(150)
+  email : varchar(150)
+  telefone : varchar(20)
+  data_cadastro : timestamp
+}
+
+entity "produto" as produto {
+  *id : serial
+  --
+  nome : varchar(100)
+  descricao : text
+  preco : decimal(10,2)
+  quantidade_estoque : integer
+  data_atualizacao : timestamp
+}
+
+entity "pedido" as pedido {
+  *id : serial
+  --
+  cliente_id : integer
+  status : varchar(50)
+  valor_total : decimal(10,2)
+  data_pedido : timestamp
+}
+
+entity "item_pedido" as item_pedido {
+  *id : serial
+  --
+  pedido_id : integer
+  produto_id : integer
+  quantidade : integer
+  preco_unitario : decimal(10,2)
+}
+
+cliente ||--o{ pedido : realiza
+pedido ||--|{ item_pedido : contem
+produto ||--o{ item_pedido : referencia
+
+@enduml

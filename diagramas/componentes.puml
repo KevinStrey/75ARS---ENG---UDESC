@@ -1,0 +1,23 @@
+@startuml "Diagrama de componentes (frontend + microsservicos + banco)"
+
+skinparam componentStyle rectangle
+
+actor Usuario as usuario
+
+component "Frontend\n(HTML/CSS/JS)" as frontend
+component "Servico Clientes\nNode.js + Express" as svc_clientes
+component "Servico Produtos\nSpring Boot" as svc_produtos
+component "Servico Pedidos\nSpring Boot" as svc_pedidos
+
+database "PostgreSQL\nmicrosservicos_db" as db
+
+usuario --> frontend
+frontend --> svc_clientes : REST
+frontend --> svc_produtos : REST
+frontend --> svc_pedidos : REST
+
+svc_clientes --> db : SQL
+svc_produtos --> db : JPA/SQL
+svc_pedidos --> db : JPA/SQL
+
+@enduml

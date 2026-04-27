@@ -3,7 +3,7 @@ const API_CONFIG = {
     // Definiremos as portas temporárias, que poderão ser ajustadas depois que tivermos os backends
     produtos: 'http://localhost:8081',
     pedidos: 'http://localhost:8082',
-    clientes: 'http://localhost:8083/api'
+    clientes: 'http://localhost:3000/api'
 };
 
 const api = {
